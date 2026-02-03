@@ -29,10 +29,10 @@ Launch one client per player (in separate terminals) after starting the server:
 * The client prints board updates and prompts. Submit moves as `row col` (0-based). Enter `quit` to disconnect.
 
 ## Game rules
-* 3x3 grid, symbols assigned as `'X' + player_id`.
+* n x n grid, where n is the number of players specified when running the server + 1. Symbols are assigned to player as `'V' + player_id`.
 * Players take turns in round-robin order managed by the scheduler thread.
-* A player wins with three of their symbols in a row (horizontal, vertical, or diagonal).
-* A draw occurs when all nine cells are filled without a winner.
+* A player wins with enough of their symbols in a row to fill an entire line on the grid (horizontal, vertical, or diagonal).
+* A draw occurs when all cells are filled without a winner.
 * After a win or draw, the board resets automatically and a new round begins; scores persist across rounds and restarts.
 
 ## Architecture notes
@@ -49,3 +49,4 @@ Launch one client per player (in separate terminals) after starting the server:
 | Rashad Ali Qaid Sofan | Scheduler thread, turn synchronization, process-shared primitives |
 | Varmen A/L Siva Kumar | Logger thread, FIFO IPC plumbing |
 | Abdullah Bin Ahmad | Score persistence, multi-round reset handling, shutdown/signals |
+| Nizam Bin Nazri | Debugging, Deadlock Prevention, Implementing Player-Count Dependent Board Size |
