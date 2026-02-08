@@ -436,7 +436,7 @@ static void handle_client(int player_id)
         exit(EXIT_FAILURE);
     }
 
-    char symbol = 'X' + player_id;
+    char symbol = 'V' + player_id;
     char buffer[256];
 
     while (1)
@@ -456,7 +456,7 @@ static void handle_client(int player_id)
         pthread_mutex_unlock(&state->state_mutex);
 
         ssize_t n = read(in_fd, buffer, sizeof(buffer) - 1);
-        if (n <= 0 || !strncmp(buffer,"quit",4))
+        if (n <= 0 || !strncmp(buffer, "quit", 4))
         {
             snprintf(buffer, sizeof(buffer), "Player %d disconnected", player_id);
             enqueue_log(buffer);
